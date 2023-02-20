@@ -1,4 +1,4 @@
-package ProductOrdersAPI.model;
+package ProductOrdersAPI.product.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class Product {
 
 	@Id
 	@Column(name = "id", columnDefinition = "serial")

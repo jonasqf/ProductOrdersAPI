@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "pedido")
-public class Pedido {
+public class Order {
 	
 	@Id
 	@Column(name = "id", columnDefinition = "serial")

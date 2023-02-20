@@ -3,9 +3,10 @@ package ProductOrdersAPI.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ProductOrdersAPI.model.ItemPedido;
+import ProductOrdersAPI.model.Order;
 
 @Repository
-public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Integer> {
+	
 
 }
