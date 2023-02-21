@@ -16,50 +16,47 @@ import ProductOrdersAPI.order.model.Order;
 import ProductOrdersAPI.order.service.OrderService;
 
 @RestController
+@RequestMapping("api/v1/orders")
 public class OrderController {
 
 	@Autowired
     OrderService OrderService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/pedido", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Order> cadastrarPedido(@RequestBody Order Order) {
+	@RequestMapping(method = RequestMethod.POST, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Order> registerOrder(@RequestBody Order Order) {
 
-		Order orderSalvo = OrderService.cadastrar(Order);
-		System.out.println("cadastrou " + orderSalvo.getId());
-		return new ResponseEntity<>(orderSalvo, HttpStatus.CREATED);
+		Order savedOrder = OrderService.register(Order);
+		return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/pedido", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<Order>> buscarTodospedido() {
+	@RequestMapping(method = RequestMethod.GET, value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<Order>> findAll() {
 
-		Collection<Order> orderBuscarTodos = OrderService.buscarTodos();
-		System.out.println("buscou todos " + orderBuscarTodos);
-		return new ResponseEntity<>(orderBuscarTodos, HttpStatus.OK);
+		Collection<Order> allOrdersFound = OrderService.buscarTodos();
+		return new ResponseEntity<>(allOrdersFound, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/pedido/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Order> buscarPorId(@PathVariable Integer id){
-		Order orderPesquisadoPorId = OrderService.buscarPorId(id);
-		return new ResponseEntity<> (orderPesquisadoPorId, HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Order> findById(@PathVariable Integer id){
+		Order orderFoundById = OrderService.findById(id);
+		return new ResponseEntity<> (orderFoundById, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/pedido/{id}")
-	public ResponseEntity<Order> excluirPedido(@PathVariable Integer id) {
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Order> deleteOrder(@PathVariable Integer id) {
 
-		Order orderExcluido = OrderService.buscarPorId(id);
-		if (orderExcluido ==null) {
-			return new ResponseEntity<>(orderExcluido, HttpStatus.NOT_FOUND);
+		Order deletedOrder = OrderService.findById(id);
+		if (deletedOrder ==null) {
+			return new ResponseEntity<>(deletedOrder, HttpStatus.NOT_FOUND);
 		}
-		System.out.println("excluiu " + orderExcluido.getId());
-		OrderService.excluir(orderExcluido);
-		return new ResponseEntity<>(orderExcluido, HttpStatus.OK);
+		OrderService.delete(deletedOrder);
+		return new ResponseEntity<>(deletedOrder, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/pedido", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Order> atualizarPedido(@RequestBody Order Order) {
+	@RequestMapping(method = RequestMethod.PUT, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Order> updateOrder(@RequestBody Order Order) {
 
-		OrderService.atualizar(Order);
-		System.out.println("atualizou " + Order.getId());
+		OrderService.update(Order);
 		return new ResponseEntity<>(Order, HttpStatus.OK);
 	}
 

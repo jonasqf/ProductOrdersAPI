@@ -14,25 +14,25 @@ public class OrderService {
 	@Autowired
     OrderRepository orderRepository;
 
-	public Order cadastrar(Order order) {
+	public Order register(Order order) {
 
 		return orderRepository.save(order);
 	}
 
-	public Collection<Order> buscarTodos() {
+	public Collection<Order> findAll() {
 		return orderRepository.findAll();
 	}
 
-	public void excluir(Order order) {
+	public void delete(Order order) {
 		orderRepository.delete(order);
 	}
 
-	public Order buscarPorId(Integer id) {
+	public Order findById(Integer id) {
 		return orderRepository.findById(id).get();
 
 	}
 
-	public void atualizar(Order order) {
+	public void update(Order order) {
 		orderRepository.save(order);
 	}
 

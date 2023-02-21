@@ -10,42 +10,42 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pedido")
+@Table(name = "order")
 public class Order {
 	
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "id_cliente")
-	private Integer idCliente;
-	@Column(name = "dt_pedido")
-	private Date dtPedido = new Date();
-    @Column(name = "preco_Total")
-    private Float precoTotal;
+	@Column(name = "customer_id")
+	private Integer customerId;
+	@Column(name = "ordered_at")
+	private Date orderedAt = new Date();
+    @Column(name = "total_amount")
+    private Float totalAmount;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getIdCliente() {
-		return idCliente;
+	public Integer setCustomerId() {
+		return customerId;
 	}
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
-	public Date getDtPedido() {
-		return dtPedido;
+	public Date getOrderedAt() {
+		return orderedAt;
 	}
-	public void setDtPedido(Date dtPedido) {
-		this.dtPedido = dtPedido;
+	public void setOrderedAt(Date orderedAt) {
+		this.orderedAt = orderedAt;
 	}
-	public Float getPrecoTotal() {
-		return precoTotal;
+	public Float getTotalAmount() {
+		return totalAmount;
 	}
-	public void setPrecoTotal(Float precoTotal) {
-		this.precoTotal = precoTotal;
+	public void getTotalAmount(Float totalAmount) {
+		this.totalAmount = totalAmount;
 	}
     
     
