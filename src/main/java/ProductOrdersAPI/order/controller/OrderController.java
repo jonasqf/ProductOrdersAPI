@@ -32,7 +32,7 @@ public class OrderController {
 	@RequestMapping(method = RequestMethod.GET, value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Order>> findAll() {
 
-		Collection<Order> allOrdersFound = OrderService.buscarTodos();
+		Collection<Order> allOrdersFound = OrderService.findAll();
 		return new ResponseEntity<>(allOrdersFound, HttpStatus.OK);
 	}
 
