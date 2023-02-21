@@ -14,25 +14,25 @@ public class ItemOrderService {
 	@Autowired
     ItemOrderRepository itemOrderRepository;
 
-	public ItemOrder cadastrar(ItemOrder itemOrder) {
+	public ItemOrder register(ItemOrder itemOrder) {
 
 		return itemOrderRepository.save(itemOrder);
 	}
 
-	public Collection<ItemOrder> buscarTodos() {
+	public Collection<ItemOrder> findAll() {
 		return itemOrderRepository.findAll();
 	}
 
-	public void excluir(ItemOrder itemOrder) {
+	public void delete(ItemOrder itemOrder) {
 		itemOrderRepository.delete(itemOrder);
 	}
 
-	public ItemOrder buscarPorId(Integer id) {
+	public ItemOrder findByid(Integer id) {
 		return itemOrderRepository.findById(id).get();
 
 	}
 
-	public void atualizar(ItemOrder itemOrder) {
+	public void update(ItemOrder itemOrder) {
 		itemOrderRepository.save(itemOrder);
 	}
 

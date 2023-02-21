@@ -8,42 +8,42 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "item_pedido")	
+@Table (name = "item_order")
 public class ItemOrder {
 
 	@Id
 	@Column (name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column (name = "id_produto")
-	private Integer idProduto;
-	@Column (name = "id_pedido")
-	private Integer idPedido;
-	@Column (name = "quantidade")
-	private Integer quantidade;
+	@Column (name = "product_id")
+	private Integer productId;
+	@Column (name = "order_id")
+	private Integer orderId;
+	@Column (name = "quantity")
+	private Integer quantity;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getIdProduto() {
-		return idProduto;
+	public Integer getProductId() {
+		return productId;
 	}
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
-	public Integer getIdPedido() {
-		return idPedido;
+	public Integer getOrderId() {
+		return orderId;
 	}
-	public void setIdPedido(Integer idPedido) {
-		this.idPedido = idPedido;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
-	public Integer getQuantidade() {
-		return quantidade;
+	public Integer getQuantity() {
+		return quantity;
 	}
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	

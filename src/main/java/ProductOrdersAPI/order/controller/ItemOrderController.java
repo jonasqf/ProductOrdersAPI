@@ -16,50 +16,47 @@ import ProductOrdersAPI.order.model.ItemOrder;
 import ProductOrdersAPI.order.service.ItemOrderService;
 
 @RestController
+@RequestMapping("api/v1/itemOrders")
 public class ItemOrderController {
 
 	@Autowired
     ItemOrderService ItemOrderService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/itemPedido", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ItemOrder> cadastrarItemPedido(@RequestBody ItemOrder ItemOrder) {
+	@RequestMapping(method = RequestMethod.POST, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ItemOrder> registerItemOrder(@RequestBody ItemOrder ItemOrder) {
 
-		ItemOrder itemOrderSalvo = ItemOrderService.cadastrar(ItemOrder);
-		System.out.println("cadastrou " + itemOrderSalvo.getId());
-		return new ResponseEntity<>(itemOrderSalvo, HttpStatus.CREATED);
+		ItemOrder savedItemOrder = ItemOrderService.register(ItemOrder);
+		return new ResponseEntity<>(savedItemOrder, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/itemPedido", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<ItemOrder>> buscarTodositemPedido() {
+	@RequestMapping(method = RequestMethod.GET, value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<ItemOrder>> findAll() {
 
-		Collection<ItemOrder> itemOrderBuscarTodos = ItemOrderService.buscarTodos();
-		System.out.println("buscou todos " + itemOrderBuscarTodos);
-		return new ResponseEntity<>(itemOrderBuscarTodos, HttpStatus.OK);
+		Collection<ItemOrder> allItemOrderFound = ItemOrderService.findAll();
+		return new ResponseEntity<>(allItemOrderFound, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/itemPedido/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ItemOrder> buscarPorId(@PathVariable Integer id){
-		ItemOrder itemOrderPesquisadoPorId = ItemOrderService.buscarPorId(id);
-		return new ResponseEntity<> (itemOrderPesquisadoPorId, HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ItemOrder> findById(@PathVariable Integer id){
+		ItemOrder foundItemOrderById = ItemOrderService.findByid(id);
+		return new ResponseEntity<> (foundItemOrderById, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/itemPedido/{id}")
-	public ResponseEntity<ItemOrder> excluirItemPedido(@PathVariable Integer id) {
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<ItemOrder> deleteItemOrder(@PathVariable Integer id) {
 
-		ItemOrder itemOrderExcluido = ItemOrderService.buscarPorId(id);
-		if (itemOrderExcluido ==null) {
-			return new ResponseEntity<>(itemOrderExcluido, HttpStatus.NOT_FOUND);
+		ItemOrder deletedItemOrder = ItemOrderService.findByid(id);
+		if (deletedItemOrder ==null) {
+			return new ResponseEntity<>(deletedItemOrder, HttpStatus.NOT_FOUND);
 		}
-		System.out.println("excluiu " + itemOrderExcluido.getId());
-		ItemOrderService.excluir(itemOrderExcluido);
-		return new ResponseEntity<>(itemOrderExcluido, HttpStatus.OK);
+		ItemOrderService.delete(deletedItemOrder);
+		return new ResponseEntity<>(deletedItemOrder, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/itemPedido", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ItemOrder> atualizarItemPedido(@RequestBody ItemOrder ItemOrder) {
+	@RequestMapping(method = RequestMethod.PUT, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ItemOrder> updateItemOrder(@RequestBody ItemOrder ItemOrder) {
 
-		ItemOrderService.atualizar(ItemOrder);
-		System.out.println("atualizou " + ItemOrder.getId());
+		ItemOrderService.update(ItemOrder);
 		return new ResponseEntity<>(ItemOrder, HttpStatus.OK);
 	}
 
