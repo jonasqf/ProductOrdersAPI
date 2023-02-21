@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "customer")
 public class Customer {
 
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "nome", nullable = false)
-	private String nome;
+	@Column(name = "name", nullable = false)
+	private String name;
 	@Column(name = "email", nullable = false)
 	private String email;
 	@Column(name = "password", nullable = false)
@@ -46,12 +46,12 @@ public class Customer {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = name;
 	}
 
 }
