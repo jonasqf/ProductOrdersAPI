@@ -19,7 +19,22 @@ public class Product {
 	private String productName;
     @Column(name = "product_price")
     private Float productPrice;
-    
+
+	public Float getProductStatus() {
+		return productStatus;
+	}
+
+	public void setProductStatus(Float productStatus) {
+		this.productStatus = productStatus;
+	}
+
+	@Column(name = "product_status")
+	private Float productStatus;
+	public Product(String productName, Float productPrice) {
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
+
 	public Integer getId() {
 		return id;
 	}
