@@ -1,4 +1,4 @@
-package ProductOrdersAPI.controller;
+package ProductOrdersAPI.order.controller;
 
 import java.util.Collection;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ProductOrdersAPI.model.ItemOrder;
-import ProductOrdersAPI.service.ItemOrderService;
+import ProductOrdersAPI.order.model.ItemOrder;
+import ProductOrdersAPI.order.service.ItemOrderService;
 
 @RestController
 public class ItemOrderController {

@@ -1,4 +1,4 @@
-package ProductOrdersAPI.model;
+package ProductOrdersAPI.customer.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

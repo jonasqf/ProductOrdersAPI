@@ -1,12 +1,12 @@
-package ProductOrdersAPI.service;
+package ProductOrdersAPI.order.service;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ProductOrdersAPI.model.ItemOrder;
-import ProductOrdersAPI.repository.ItemOrderRepository;
+import ProductOrdersAPI.order.model.ItemOrder;
+import ProductOrdersAPI.order.repository.ItemOrderRepository;
 
 @Service
 public class ItemOrderService {

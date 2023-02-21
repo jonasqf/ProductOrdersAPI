@@ -1,11 +1,11 @@
-package ProductOrdersAPI.service;
+package ProductOrdersAPI.customer.service;
 
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ProductOrdersAPI.model.Customer;
-import ProductOrdersAPI.repository.CustomerRepository;
+import ProductOrdersAPI.customer.model.Customer;
+import ProductOrdersAPI.customer.repository.CustomerRepository;
 
 @Service
 public class CustomerService {

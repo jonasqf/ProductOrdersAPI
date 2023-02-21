@@ -1,4 +1,4 @@
-package ProductOrdersAPI.controller;
+package ProductOrdersAPI.customer.controller;
 
 import java.util.Collection;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ProductOrdersAPI.model.Customer;
-import ProductOrdersAPI.service.CustomerService;
+import ProductOrdersAPI.customer.model.Customer;
+import ProductOrdersAPI.customer.service.CustomerService;
 
 @RestController
 @Api(value="Customer")
