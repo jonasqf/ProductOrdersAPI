@@ -14,25 +14,25 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 
-	public Product cadastrar(Product product) {
+	public Product register(Product product) {
 
 		return productRepository.save(product);
 	}
 
-	public Collection<Product> buscarTodos() {
+	public Collection<Product> findAll() {
 		return productRepository.findAll();
 	}
 
-	public void excluir(Product product) {
+	public void delete(Product product) {
 		productRepository.delete(product);
 	}
 
-	public Product buscarPorId(Integer id) {
+	public Product findById(Integer id) {
 		return productRepository.findById(id).get();
 
 	}
 
-	public void atualizar(Product product) {
+	public void update(Product product) {
 		productRepository.save(product);
 	}
 

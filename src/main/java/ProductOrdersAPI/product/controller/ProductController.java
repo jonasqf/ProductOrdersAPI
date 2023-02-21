@@ -16,50 +16,47 @@ import org.springframework.web.bind.annotation.RestController;
 import ProductOrdersAPI.product.service.ProductService;
 
 @RestController
+@RequestMapping("api/v1/products")
 public class ProductController {
 
 	@Autowired
 	ProductService ProductService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/produto", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Product> createProduct(@RequestBody Product Product) {
 
-		Product productSalvo = ProductService.cadastrar(Product);
-		System.out.println("cadastrou " + productSalvo.getNomeProduto());
-		return new ResponseEntity<>(productSalvo, HttpStatus.CREATED);
+		Product savedProduct = ProductService.register(Product);
+		return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/produto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<Product>> buscarTodosproduto() {
+	@RequestMapping(method = RequestMethod.GET, value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<Product>> findAllProducts() {
 
-		Collection<Product> productBuscarTodos = ProductService.buscarTodos();
-		System.out.println("buscou todos " + productBuscarTodos);
-		return new ResponseEntity<>(productBuscarTodos, HttpStatus.OK);
+		Collection<Product> findAllProducts = ProductService.findAll();
+		return new ResponseEntity<>(findAllProducts, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/produto/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Product> buscarPorId(@PathVariable Integer id){
-		Product productPesquisadoPorId = ProductService.buscarPorId(id);
-		return new ResponseEntity<> (productPesquisadoPorId, HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> findById(@PathVariable Integer id){
+		Product productById = ProductService.findById(id);
+		return new ResponseEntity<> (productById, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/produto/{id}")
-	public ResponseEntity<Product> excluirProduto(@PathVariable Integer id) {
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable Integer id) {
 
-		Product productExcluido = ProductService.buscarPorId(id);
-		if (productExcluido ==null) {
-			return new ResponseEntity<>(productExcluido, HttpStatus.NOT_FOUND);
+		Product productDeleted = ProductService.findById(id);
+		if (productDeleted ==null) {
+			return new ResponseEntity<>(productDeleted, HttpStatus.NOT_FOUND);
 		}
-		System.out.println("excluiu " + productExcluido.getNomeProduto());
-		ProductService.excluir(productExcluido);
-		return new ResponseEntity<>(productExcluido, HttpStatus.OK);
+		ProductService.delete(productDeleted);
+		return new ResponseEntity<>(productDeleted, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/produto", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Product> atualizarProduto(@RequestBody Product Product) {
+	@RequestMapping(method = RequestMethod.PUT, value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> updateProduct(@RequestBody Product Product) {
 
-		ProductService.atualizar(Product);
-		System.out.println("atualizou " + Product.getNomeProduto());
+		ProductService.update(Product);
 		return new ResponseEntity<>(Product, HttpStatus.OK);
 	}
 

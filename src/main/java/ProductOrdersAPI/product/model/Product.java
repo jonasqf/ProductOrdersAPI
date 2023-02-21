@@ -8,17 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "product")
 public class Product {
 
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "nome_Produto")
-	private String nomeProduto;
-    @Column(name = "preco_Produto")
-    private Float precoProduto;
+	@Column(name = "product_name")
+	private String productName;
+    @Column(name = "product_price")
+    private Float productPrice;
     
 	public Integer getId() {
 		return id;
@@ -26,17 +26,17 @@ public class Product {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNomeProduto() {
-		return nomeProduto;
+	public String getProductName() {
+		return productName;
 	}
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public Float getPrecoProduto() {
-		return precoProduto;
+	public Float getProductPrice() {
+		return productPrice;
 	}
-	public void setPrecoProduto(Float precoProduto) {
-		this.precoProduto = precoProduto;
+	public void setProductPrice(Float productPrice) {
+		this.productPrice = productPrice;
 	}
 
 }
